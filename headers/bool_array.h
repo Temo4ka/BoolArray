@@ -4,12 +4,14 @@ struct Bool {
     char *charRef;
     char boolPos;
 
-    Bool(char *ref, char position) {
-        charRef =   ref   ;
-        boolPos = position;
-    }
+    Bool(char *ref, char position) :
+       charRef(ref),
+                 boolPos(position)
+    {}
 
     Bool& operator=(const bool value);
+
+    bool operator*();
 };
 
 class BoolArray {
@@ -18,11 +20,13 @@ class BoolArray {
 
     public:
         BoolArray(size_t size) :
-        size (size),
-        buffer((char *) calloc(size, sizeof(char)))
+        size (size / 8 + 1),
+        buffer((char *) calloc(size / 8 + 1, sizeof(char)))
         {}
 
-        Bool& operator[] (int index);
+        Bool operator[] (int index);
+
+        void print();
 
         ~BoolArray() { free(buffer); }
 };
