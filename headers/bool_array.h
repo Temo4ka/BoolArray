@@ -1,8 +1,10 @@
 #include <stdlib.h>
 
-struct Bool {
+class Bool {
     char *charRef;
     char boolPos;
+
+    public:
 
     Bool(char *ref, char position) :
        charRef(ref),
